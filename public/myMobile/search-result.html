@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>乐淘</title>
+    <title>Document</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="assets/mui/css/mui.min.css">
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/search.css"/>
+    <link rel="stylesheet" href="css/search-result.css"/>
     <script src="assets/mui/js/mui.min.js"></script>
     <script src="assets/zepto/zepto.min.js"></script>
     <script src="assets/artTemplate/template-web.js"></script>
-    <script src="js/search.js"></script>
+    <script src="js/search-result.js"></script>
 </head>
 <body>
     <header class="mui-bar mui-bar-nav my-header">
-        <h1 class="mui-title">搜索中心</h1>
-        <a class="mui-icon mui-icon-search mui-pull-right"></a>
+        <h1 class="mui-title">搜索结果</h1>
     </header>
     <nav class="mui-bar mui-bar-tab my-footer">
         <a class="mui-tab-item mui-active" href="index.html">
@@ -36,29 +35,39 @@
         </a>
     </nav>
     <div class="mui-content">
-        <div class="container">
-            <!--搜索框开始-->
-            <div class="search">
-                <input type="text" placeholder="搜索您喜欢的商品"/>
-                <input type="button" value="搜索" id="search-btn"/>
+        <div class="product">
+            <div class="mui-row filter">
+                <div class="mui-col-xs-6">
+                    价格
+                    <span class="mui-icon mui-icon-arrowdown"></span>
+                </div>
+                <div class="mui-col-xs-6">
+                    销量
+                    <span class="mui-icon mui-icon-arrowdown"></span>
+                </div>
             </div>
-            <!--搜索框结束-->
-
-            <!--搜素历史开始-->
-            <div class="history-top mui-clearfix">
-                <span class="title mui-pull-left">搜索历史</span>
-                <span class="clear mui-pull-right mui-icon mui-icon-trash" id="clearBtn">清空历史</span>
-            </div>
-            <ul class="mui-table-view" id="history-box">
-                <!--搜索历史动态数据-->
+            <ul class="mui-clearfix" id="search-box">
+                <!--动态生成数据-->
             </ul>
-            <!--搜索历史结束-->
         </div>
     </div>
-    <script id="historyTPL" type="text/html">
+
+    <script id="searchTpl" type="text/html">
         {{each result}}
-            <li class="mui-table-view-cell">{{$value}}</li>
+            <li>
+                <a href="#">
+                    <img src="{{$value.pic[0].picAddr}}">
+		    				<span class="name">
+		    					{{$value.proName}}
+		    				</span>
+                    <p>
+                        <span>¥{{$value.price}}</span>
+                        <span>¥{{$value.oldPrice}}</span>
+                    </p>
+                    <span class="buy-now">立即购买</span>
+                </a>
+            </li>
         {{/each}}
     </script>
-</body>
+    </body>
 </html>
